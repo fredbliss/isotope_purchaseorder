@@ -30,6 +30,13 @@
       ]
     }
   },
+  "extra": {
+    "contao": {
+      "sources": {
+        "": "system/modules/isotope_productlistgrouped"
+      }
+    }
+  },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "config": {
