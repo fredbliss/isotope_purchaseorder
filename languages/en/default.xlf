@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/cs02/xliff-core-1.2-strict.xsd">
+    <file datatype="plaintext" original="system/modules/isotope_purchaseorder/languages/en/default.xlf" source-language="en">
+        <body>
+            <trans-unit id="MSC.emptyPurchaseOrder">
+                <source>Please enter a purchase order number/id</source>
+            </trans-unit>
+            <trans-unit id="MODEL.tl_iso_payment.purchaseorder.0">
+                <source>Purchase Order</source>
+            </trans-unit>
+            <trans-unit id="MODEL.tl_iso_payment.purchaseorder.1">
+                <source>Use this for customers who can pay by purchase order.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
