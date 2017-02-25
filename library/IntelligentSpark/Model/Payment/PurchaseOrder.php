@@ -2,14 +2,15 @@
 
 namespace IntelligentSpark\Model\Payment;
 
+use Isotope\Model\Payment;
 use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
-use Isotope\Model\Payment;
 use Isotope\Isotope;
 use Isotope\Model\Product;
 use Isotope\Model\OrderStatus;
 use Isotope\Model\ProductCollection\Order;
 use Isotope\Module\Checkout;
+use Isotope\Module\OrderDetails as ModuleIsotopeOrderDetails;
 
 class PurchaseOrder extends Payment implements IsotopePayment
 {

@@ -15,4 +15,4 @@
 /**
  * Payment methods
  */
-\Isotope\Model\Payment::registerModelType('purchaseorder', 'Isotope\Model\Payment\PurchaseOrder');
+\Isotope\Model\Payment::registerModelType('purchaseorder', 'IntelligentSpark\Model\Payment\PurchaseOrder');
