@@ -5,41 +5,11 @@ namespace IntelligentSpark\Model\Payment;
 use Isotope\Model\Payment;
 use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
-use Isotope\Isotope;
-use Isotope\Model\Product;
-use Isotope\Model\OrderStatus;
-use Isotope\Model\ProductCollection\Order;
-use Isotope\Module\Checkout;
-use Isotope\Module\OrderDetails as ModuleIsotopeOrderDetails;
 
 class PurchaseOrder extends Payment implements IsotopePayment
 {
 
     protected $strTemplate = 'iso_payment_purchaseorder';
-
-    /**
-     * Cart object - Able to handle other cart types than just IsotopeCart
-     *
-     * @access protected
-     * @var IsotopeProductCollection
-     */
-    protected $objCart;
-
-    /**
-     * Order object
-     *
-     * @access protected
-     * @var IsotopeOrder
-     */
-    protected $objOrder;
-
-    /**
-     * Cart field - could vary according to collection type
-     *
-     * @access protected
-     * @var string
-     */
-    protected $strCartField = 'cart_id';
 
     /**
      * Proceed to complete step?
@@ -68,9 +38,9 @@ class PurchaseOrder extends Payment implements IsotopePayment
     {
 
 
-        $objTemplate = new \Isotope\Template($this->strTemplate);
+        $objTemplate = new \FrontendTemplate($this->strTemplate);
         $objTemplate->setData($this->arrData);
-
+        //$objTemplate->parsed = $this->generatePaymentWidget($objModule);
         $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.purchaseorder'][0]);
 
         return $objTemplate->parse();
@@ -91,7 +61,7 @@ class PurchaseOrder extends Payment implements IsotopePayment
         return true;
     }
 
-    protected function generatePaymentWidget() {
+    protected function generatePaymentWidget($objModule) {
 
         $arrFields = array
         (
@@ -138,7 +108,7 @@ class PurchaseOrder extends Payment implements IsotopePayment
             $strParsed = $objWidget->parse();
             $strBuffer .= $strParsed;
             $arrParsed[$field] = $strParsed;
-            $objTemplate->{'field_'.$field} = $strParsed;
+            $objTemplate->parsed = $strParsed;
         }
     }
 }

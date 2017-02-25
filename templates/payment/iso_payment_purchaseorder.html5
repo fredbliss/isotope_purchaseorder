@@ -1,5 +1,3 @@
-<h2><?php echo $this->headline; ?></h2>
-<p class="message"><?php echo $this->message; ?></p>
-<form id="<?php echo $this->id; ?>" action="<?php echo $this->action; ?>" method="post">
-<input type="text" name="purchase_order_number" value="" placeholder="enter purchase order id here">
-</form>
+<h2><?= $this->headline; ?></h2>
+<p class="message"><?= $this->message; ?></p>
+<?= $this->parsed; ?>

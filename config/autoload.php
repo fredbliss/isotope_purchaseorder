@@ -23,6 +23,6 @@ if (class_exists('NamespaceClassLoader')) {
  */
 TemplateLoader::addFiles(array
 (
-    'iso_payment_purchaseorder'                  => 'system/modules/isotope/templates'
+    'iso_payment_purchaseorder'                  => 'system/modules/isotope_purchaseorder/payment/templates'
 
 ));
