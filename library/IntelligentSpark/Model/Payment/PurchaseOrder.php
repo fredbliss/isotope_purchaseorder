@@ -71,9 +71,9 @@ class PurchaseOrder extends Payment implements IsotopePayment
 
         $arrFields = array
         (
-            'purchase_order_id'	=> array
+            'po_number'	=> array
             (
-                'label'				=> &$GLOBALS['TL_LANG']['MSC']['purchase_order_id'],
+                'label'				=> &$GLOBALS['TL_LANG']['MSC']['po_number'],
                 'inputType'			=> 'text',
                 'eval'				=> array('mandatory'=>true, 'tableless'=>true),
             )
@@ -111,7 +111,7 @@ class PurchaseOrder extends Payment implements IsotopePayment
                     $blnSubmit = false;
                     $objModule->doNotSubmit = true;
                 }else{
-                    $objOrder->purchase_order_id = $objModule->value;
+                    $objOrder->{$field} = $objModule->value;
                     $objOrder->save();
                     $this->blnProceed = true;
                 }
