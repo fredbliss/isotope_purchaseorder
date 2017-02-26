@@ -2,7 +2,9 @@
 
 namespace IntelligentSpark\Model\Payment;
 
+use Isotope\Isotope;
 use Isotope\Model\Payment;
+use Isotope\Module\Checkout;
 use Isotope\Interfaces\IsotopePayment;
 use Isotope\Interfaces\IsotopeProductCollection;
 
@@ -41,11 +43,12 @@ class PurchaseOrder extends Payment implements IsotopePayment
         $objTemplate->setData($this->arrData);
         $objTemplate->id = $this->id;
         $objTemplate->po_input = $this->generatePaymentWidget($objOrder, $objModule);
-        $objTemplate->slabel = $GLOBALS['TL_LANG']['MSC']['submitLabel'];
+        $objTemplate->previousLabel = specialchars($GLOBALS['TL_LANG']['MSC']['previousStep']);
+        $objTemplate->slabel = specialchars($GLOBALS['TL_LANG']['MSC']['submitLabel']);
         $objTemplate->action = \Environment::get('request');
         $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MODEL']['tl_iso_payment']['purchaseorder'][0]);
 
-        return $objTemplate->parse();
+        return $this->blnProceed ? false : $objTemplate->parse();
     }
 
 
@@ -98,6 +101,10 @@ class PurchaseOrder extends Payment implements IsotopePayment
             //Handle form submit
             if( \Input::post('FORM_SUBMIT') == $this->strFormId."_".$this->id)
             {
+                if (strlen(\Input::post('previousStep'))) {
+                    Checkout::redirectToStep('review', $objOrder ?: Isotope::getCart());
+                }
+
                 $objWidget->validate();
                 if($objWidget->hasErrors())
                 {
@@ -106,6 +113,7 @@ class PurchaseOrder extends Payment implements IsotopePayment
                 }else{
                     $objOrder->purchase_order_id = $objModule->value;
                     $objOrder->save();
+                    $this->blnProceed = true;
                 }
             }
 

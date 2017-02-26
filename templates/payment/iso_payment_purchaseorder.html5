@@ -4,5 +4,8 @@
 <input type="hidden" name="FORM_SUBMIT" value="payment_purchase_order_<?= $this->id ?>">
 <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
 <?= $this->po_input; ?>
-<input type="submit" name="submit" value="<?= $this->slabel; ?>">
+    <div class="submit_container">
+        <input type="submit" class="submit previous button" name="previousStep" value="<?php echo $this->previousLabel; ?>">
+        <input type="submit" class="submit process button" name="nextStep" value="<?php echo $this->sLabel; ?>">
+    </div>
 </form>
