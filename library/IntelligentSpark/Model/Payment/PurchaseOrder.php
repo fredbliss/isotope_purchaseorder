@@ -36,12 +36,14 @@ class PurchaseOrder extends Payment implements IsotopePayment
      */
     public function checkoutForm(IsotopeProductCollection $objOrder, \Module $objModule)
     {
-
-
         $objTemplate = new \FrontendTemplate($this->strTemplate);
+
         $objTemplate->setData($this->arrData);
-        //$objTemplate->parsed = $this->generatePaymentWidget($objModule);
-        $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MODEL']['tl_iso_payment.purchaseorder'][0]);
+        $objTemplate->id = $this->id;
+        $objTemplate->po_input = $this->generatePaymentWidget($objOrder, $objModule);
+        $objTemplate->slabel = $GLOBALS['TL_LANG']['MSC']['submitLabel'];
+        $objTemplate->action = \Environment::get('request');
+        $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MODEL']['tl_iso_payment']['purchaseorder'][0]);
 
         return $objTemplate->parse();
     }
@@ -61,7 +63,8 @@ class PurchaseOrder extends Payment implements IsotopePayment
         return true;
     }
 
-    protected function generatePaymentWidget($objModule) {
+    protected function generatePaymentWidget($objOrder,$objModule) {
+
 
         $arrFields = array
         (
@@ -75,7 +78,6 @@ class PurchaseOrder extends Payment implements IsotopePayment
 
         $arrParsed = array();
         $blnSubmit = true;
-        $intSelectedPayment = intval(\Input::post('PaymentMethod') ?: $this->objCart->getPaymentMethod());
 
         foreach ($arrFields as $field => $arrData )
         {
@@ -94,21 +96,24 @@ class PurchaseOrder extends Payment implements IsotopePayment
             $objWidget->tableless = $this->tableless;
 
             //Handle form submit
-            if( \Input::post('FORM_SUBMIT') == $this->strFormId && $intSelectedPayment == $this->id)
+            if( \Input::post('FORM_SUBMIT') == $this->strFormId."_".$this->id)
             {
                 $objWidget->validate();
                 if($objWidget->hasErrors())
                 {
                     $blnSubmit = false;
                     $objModule->doNotSubmit = true;
+                }else{
+                    $objOrder->purchase_order_id = $objModule->value;
+                    $objOrder->save();
                 }
             }
 
             // Give the template plenty of ways to output the fields
             $strParsed = $objWidget->parse();
-            $strBuffer .= $strParsed;
-            $arrParsed[$field] = $strParsed;
-            $objTemplate->parsed = $strParsed;
+            #$strBuffer .= $strParsed;
+            #$arrParsed[$field] = $strParsed;
+            return $strParsed;
         }
     }
 }

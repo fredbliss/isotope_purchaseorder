@@ -1,3 +1,6 @@
 <h2><?= $this->headline; ?></h2>
 <p class="message"><?= $this->message; ?></p>
-<?= $this->parsed; ?>
+<form id="payment_purchase_order_<?= $this->id ?>" action="<?= $this->action ?>" method="post">
+<?= $this->po_input; ?>
+<input type="submit" name="submit" value="<?= $this->slabel; ?>">
+</form>
