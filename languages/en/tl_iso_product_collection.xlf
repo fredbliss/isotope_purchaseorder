@@ -2,10 +2,10 @@
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/cs02/xliff-core-1.2-strict.xsd">
     <file datatype="plaintext" original="system/modules/isotope_purchaseorder/languages/en/tl_iso_product_collection.xlf" source-language="en">
         <body>
-            <trans-unit id="tl_module.po_number.0">
+            <trans-unit id="tl_iso_product_collection.po_number.0">
                 <source>Purchase Order ID</source>
             </trans-unit>
-            <trans-unit id="tl_module.po_number.1">
+            <trans-unit id="tl_iso_product_collection.po_number.1">
                 <source>Purchase Order ID as entered by customer for payment.</source>
             </trans-unit>
         </body>
