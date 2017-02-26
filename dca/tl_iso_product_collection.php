@@ -16,5 +16,6 @@ $GLOBALS['TL_DCA']['tl_iso_product_collection']['fields']['po_number'] = array
 (
     'label'		=> &$GLOBALS['TL_LANG']['tl_iso_product_collection']['po_number'],
     'inputType'	=> 'text',
-    'eval'		=> array('disabled'=>true)
+    'eval'		=> array('disabled'=>true),
+    'sql'       => "varchar(255) NOT NULL default ''"
 );
