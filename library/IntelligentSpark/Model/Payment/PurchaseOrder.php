@@ -44,7 +44,7 @@ class PurchaseOrder extends Payment implements IsotopePayment
         $objTemplate->id = $this->id;
         $objTemplate->po_input = $this->generatePaymentWidget($objOrder, $objModule);
         $objTemplate->previousLabel = specialchars($GLOBALS['TL_LANG']['MSC']['previousStep']);
-        $objTemplate->slabel = $GLOBALS['TL_LANG']['MSC']['submitLabel'];
+        $objTemplate->slabel = specialchars($GLOBALS['TL_LANG']['MSC']['confirmOrder']);
         $objTemplate->action = \Environment::get('request');
         $objTemplate->headline = specialchars($GLOBALS['TL_LANG']['MODEL']['tl_iso_payment']['purchaseorder'][0]);
 
