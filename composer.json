@@ -26,14 +26,14 @@
   "autoload": {
     "psr-0": {
       "IntelligentSpark\\": [
-        "library/"
+        "system/modules/isotope_purchaseorder/library/"
       ]
     }
   },
   "extra": {
     "contao": {
       "sources": {
-        "system/modules/isotope_purchaseorder": "system/modules/isotope_purchaseorder"
+        "": "system/modules/isotope_purchaseorder"
       }
     }
   },
