@@ -33,7 +33,7 @@
   "extra": {
     "contao": {
       "sources": {
-        "": "system/modules/isotope_purchaseorder"
+        "system/modules/isotope_purchaseorder": "system/modules/isotope_purchaseorder"
       }
     }
   },
